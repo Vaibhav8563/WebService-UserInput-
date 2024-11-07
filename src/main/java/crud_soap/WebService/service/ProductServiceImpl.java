@@ -14,13 +14,6 @@ public class ProductServiceImpl implements ProductService {
 
     private static List<Product> products = new ArrayList<>();
 
-//    static {
-//        // Initial dummy data to test functionality, can be removed once user input is fully implemented.
-//        products.add(new Product(1, "Smartphone", 56015));
-//        products.add(new Product(2, "Tablet", 39999));
-//        products.add(new Product(3, "Laptop", 74569.5));
-//        products.add(new Product(4, "Bike", 399999.25));
-//    }
 
     @Override
     public String createProduct(Product product) {

@@ -13,16 +13,26 @@ import java.util.Scanner;
 public class ConsumerWS {
 
     public static void main(String[] args) throws Exception {
-        // URL for the WSDL of your ProductService
+        
+   	/*  Yeh line aapke SOAP service ka WSDL URL specify karti hai.
+     *  WSDL file service ka structure aur operations define karti hai.  */
         URL url = new URL("http://localhost:8081/webservice/product?wsdl");
 
-        // QName for the service (namespace and service name)
+
+    /* The QName is used to uniquely identify the service within a particular namespace.
+     * The namespace is typically the URL, and the local part is the name of the service in the WSDL file.
+     * "http://service.WebService.crud_soap/" namespace URI hai, jo service ko uniquely identify karta hai, that avoids naming conflicts between different services.
+     * "ProductServiceImplService"  WSDL file mein service ka local name hai.    */
         QName qname = new QName("http://service.WebService.crud_soap/", "ProductServiceImplService");
 
-        // Create the service object
+    /* Yeh line ek Service object create karti hai jo SOAP web service ko represent karta hai.
+     * Yeh object WSDL URL aur QName ke saath initialize hota hai.  */
         Service service = Service.create(url, qname);
 
-        // Get the port (proxy) for ProductService
+    /* Yeh line proxy object (client stub) ko return karti hai jo ProductService interface ko implement karta hai.
+     * "getPort(ProductService.class)" method proxy object ko create karta hai,
+     * jo SOAP service ke operations ko local method ki tarah call karne ke liye use hota hai.
+     */
        ProductService productService = service.getPort(ProductService.class);
 
         // Scanner for user input
@@ -47,6 +57,7 @@ public class ConsumerWS {
                     products.forEach(System.out::println);
                     break;
 
+                    
                 case 2:
                     // View a product by ID
                     System.out.print("Enter Product ID: ");
@@ -59,6 +70,7 @@ public class ConsumerWS {
                     }
                     break;
 
+                    
                 case 3:
                     // Add a new product
                     System.out.print("Enter Product ID: ");
@@ -74,6 +86,7 @@ public class ConsumerWS {
                     System.out.println(addResponse);
                     break;
 
+                    
                 case 4:
                     // Update an existing product
                     System.out.print("Enter Product ID to update: ");
@@ -89,6 +102,7 @@ public class ConsumerWS {
                     System.out.println(updateResponse);
                     break;
 
+                    
                 case 5:
                     // Delete a product
                     System.out.print("Enter Product ID to delete: ");
@@ -97,6 +111,7 @@ public class ConsumerWS {
                     System.out.println(deleteResponse);
                     break;
 
+                    
                 case 6:
                     // Exit the program
                     System.out.println("Exiting...");
